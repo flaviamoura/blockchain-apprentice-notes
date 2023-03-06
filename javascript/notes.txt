@@ -1,0 +1,116 @@
+let name = 'Mosh'; // String Literal
+let age = 30; // Number Literal
+let isApproved = true; // Boolean Literal
+let firstName = undefined;
+let selectedColor = null;
+
+// objects
+
+let person = {
+   name: 'Mosh',
+   age: 30
+}
+
+// Dot Notation
+person.name = 'John';
+
+console.log(person.name);
+
+// Array 
+
+let selectedColors = ['red', 'blue'];
+selectedColors[2] = 1;
+console.log(selectedColors.length);
+
+// Functions
+// name, lastName are a parameter
+function greet(name, lastName) {
+   console.log('Hello' + name + ' ' + lastName);
+}
+// Argument
+greet('John', 'Smith');
+
+// Performing a task
+function greet(name, lastName) {
+   console.log('Hello' + name + ' ' + lastName);
+}
+
+// Calculating a value
+function square(number) {
+   return number * number;
+}
+
+console.log(square(2));
+
+// Arithmetic Operators
+
+let x = 10;
+let y = 4;
+
+console.log(x + y);
+console.log(x - y);
+console.log(x * y);
+console.log(x / y);
+console.log(x % y); // Modulus
+console.log(x ** y); // Exponentiation
+
+// Increment ++
+console.log(x++);
+
+// Decrement --
+console.log(--x);
+
+// Comparison Operators
+
+let x = 1;
+
+// Relational
+console.log(x > y);
+console.log(x >= y);
+console.log(x < y);
+console.log(x <= y);
+
+// Equality
+console.log(x === 1);
+console.log(x !== 1);
+
+
+// Strict Equality (Type + Value)
+console.log(1 === 1);
+console.log('1' === 1);
+
+// Lose Equality (Value)
+console.log(1 == 1);
+console.log('1' == 1);
+console.log(true == 1);
+
+// If a costomer has more than 100 points,
+// they are a 'gold' costomer, otherwise,
+// they are a 'silver' costumer.
+
+let points = 90;
+let type = points > 100 ? 'gold' : 'silver';
+
+console.log(type);
+
+// Logical Operators with Non-booleans
+
+// Logical AND (&&)
+// Returns TRUE if both operands are TRUE
+console.log(true && false);
+
+// Logical OR (||)
+// Returns TRUE if one of the operands is TRUE
+let highIncome = false;
+let goodCreditScore = false;
+let eligibleForLoan = highIncome || goodCreditScore;
+console.log('Eligible', eligibleForLoan);
+
+// NOT (!)
+let applicationRefused = !eligibleForLoan;
+console.log('Application Refused', applicationRefused);
+
+// Operator Precedence
+
+//Grouping: ( ) for example:
+let a = (1 + 2) * 3;
