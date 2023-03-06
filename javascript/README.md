@@ -5,6 +5,7 @@
 ## Sumário
 - [Basics](#variables)
 - [Operators](#operators)
+- [Control Flow](#control-flow)
 
 ### Variables
 ```
