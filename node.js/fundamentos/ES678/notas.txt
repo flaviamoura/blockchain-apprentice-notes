@@ -1,0 +1,29 @@
+let nome = "Victor"; // Global, local e de bloco
+// Escopo = nível de acesso da variavel
+var sobrenome = "Lima";// Uma var só tem dois escopos: global, local
+
+// Global: Todo mundo pode usar!
+// Local: Só a função onde foi declarado, pode usa-lo
+
+A diferença de let e var é que let adiciona mais um escopo: escopo de bloco
+se declarar um let dentro do bloco não pode usar fora 
+um bloco é tudo que começa com {}
+
+var acessa dentro de um bloco
+
+// Parâmetros opicionais
+function soma(a,b = 50){ // b = 50 tira obrigatoriedade de passar um valor
+     para ele, pois tem um valor padrão escolhido / deixar os parametros 
+    opcionais como ultimos parametros da sua função
+    console.log(a+b);
+}
+
+// exemplo de uso
+function sub(a,inverter = false){
+
+    if(inverter){
+        console.log(b - a);
+    }else{
+        console.log(a - b);
+    }
+}

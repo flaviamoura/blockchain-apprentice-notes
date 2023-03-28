@@ -1,0 +1,65 @@
+mysql -h localhost -u root -p
+- h é pra passar em qual server vc vai se conectar
+-u usuario 
+-p senha
+
+Mostrar todos os banco de dados: SHOW DATABASES;
+
+Para criar um BD:
+CREATE DATABASE sistemaDeCadastro;
+
+Como acessar um banco de dados especifico:
+USE sistemaDeCadastro;
+
+Alguns tipos de dados que o mySQL possuí:
+texto
+char
+int
+float
+date
+blob
+
+Mostrar as tabelas:
+SHOW TABLES;
+
+Criar uma tabela:
+// 50 é o número max definido no código de caracteres
+
+CREATE TABLE usuarios(
+  nome VARCHAR(50),
+  email VARCHAR(100),
+  idade INT
+);
+
+Pra ver toda a estrutura da tabela
+
+DESCRIBE usuarios;
+
+pra inserir dados:
+INSERT INTO usuarios(nome, email, idade) VALUES(
+  "Flavia",
+  "email@test.com",
+  22
+);
+
+Para listar todos os dados:
+// selecione todos os dados da tabela usuários;
+SELECT * FROM usuarios;
+
+Como listar apenas um usuários expecifico por exemplo apenas a idade igual a 22:
+SELECT * FROM usuarios WHERE idade = 22;
+SELECT * FROM usuarios WHERE nome = "Laine";
+
+retornar apenas usuários com idade superior a 18 anos:
+SELECT * FROM usuarios WHERE idade >= 18;
+
+COMO DELETAR DADOS/coluna da tabela:
+
+DELETE FROM usuarios WHERE email = "email@test.com";
+
+UPDATE de dados:
+UPDATE usuarios SET nome = "Flavia" WHERE nome = "Maria";
+
+UPDATE usuarios SET nome ="Flavia", idade = 23 WHERE nome = "Maria" AND idade = 8;
+
+
