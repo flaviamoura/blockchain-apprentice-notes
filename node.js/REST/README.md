@@ -1,5 +1,5 @@
 # API de Games
-Esta API é utilizada para TAl e TAL...
+Esta API REST é utilizada para listagem, cadastro, edição e deleção de jogos, utilizando um banco de dados feito em JSON!
 ## Endpoints
 ### GET /games
 Esse endpoint é responsável por retornar a listagem de todos os games cadastrados no banco de dados.
@@ -65,7 +65,7 @@ Caso essa resposta aconteça você vai receber o token JWT para conseguir acessa
 Exemplo de resposta:
 ```
 {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjAsImVtYWlsIjoidmkyMkBnbWFpbC5jb20iLCJpYXQiOjE2Nzk0NTE2MTQsImV4cCI6MTY3OTYyNDQxNH0.TdKC8u7uGXJs_wKd6dodjo2cTJHTSWfx2LTaQ8gHBJE"
+    "token": "eyJhbGciMjAsImVtYWlsIjoidZV8pXVCJ9.eyJpZCI6MjAsImVtYWlsIjoidmkyMkBnbWFpbC5jb20iLCJpYXQiOjE2Nzk0NTE2MTQsImV4cCI6MTY3OTYyNDQxNH0.TdKC8u7uGXJs_wKd6dodjo2cTJHTSWfx2LTaQ8gHBJE"
 }
 ```
 ##### Falha na autenticação! 401
