@@ -19,7 +19,7 @@ npm install mysql2 —save
 
 ### Banco de dados:
 Crie um banco de dados em MySQL e altere o nome do BD e senha no arquivo [database]()!
-```
+```js
 const database = new Sequelize('nomeDoBD', 'root', 'senha', {
     host: 'localhost',
     dialect: 'mysql'
@@ -40,7 +40,7 @@ Esse endpoint é responsável por realizar o cadastro dos clientes no banco de d
 http://localhost:8000/clientes
 ```
 #### Parâmetros
-```
+```json
 {
 "name": "Flavia",
 "gender": "feminino",
@@ -54,7 +54,7 @@ http://localhost:8000/clientes
 Caso essa resposta aconteça o cadastro foi criado com sucesso.
 
 Exemplo de resposta:
-```
+```json
 {
     "newClient": {
         "id": 10,
@@ -73,7 +73,7 @@ Exemplo de resposta:
 Caso essa resposta aconteça, isso significa que o cliente já está cadastrado.
 
 Exemplo de resposta:
-```
+```json
 {
     "error": "O cliente já está cadastrado! "
 }
@@ -82,7 +82,7 @@ Exemplo de resposta:
 ##### 400 Bad Request
 Caso essa resposta aconteça foram enviados parâmetros inválidos(ex: name: "22") ou vazios no corpo da solicitação.
 Exemplo de resposta:
-```
+```json
 {
     "error": "Os parâmetros são inválidos ou não foram preenchidos corretamente!"
 }
@@ -94,7 +94,7 @@ Esse endpoint é responsável por realizar o cadastro das cidades no banco de da
 http://localhost:8000/cidades
 ```
 #### Parâmetros
-```
+```json
 {
 "name": "Santiago",
 "state": "RS"
@@ -105,7 +105,7 @@ http://localhost:8000/cidades
 Caso essa resposta aconteça o cadastro foi criado com sucesso.
 
 Exemplo de resposta:
-```
+```json
 {
     "newCity": {
         "id": 9,
@@ -121,7 +121,7 @@ Exemplo de resposta:
 Caso essa resposta aconteça, isso significa que a cidade já está cadastrada.
 
 Exemplo de resposta:
-```
+```json
 {
     "error": "A cidade já está cadastrada! "
 }
@@ -130,7 +130,7 @@ Exemplo de resposta:
 ##### 400 Bad Request
 Foram enviados parâmetros inválidos(ex: name: "22") ou vazios no corpo da solicitação.
 Exemplo de resposta:
-```
+```json
 {
     "error": "Os parâmetros são inválidos ou não foram preenchidos corretamente!"
 }
@@ -150,7 +150,7 @@ http://localhost:8000/cidades/?state=RS
 Caso essa resposta aconteça sua consulta foi feita com sucesso.
 
 Exemplo de resposta de consulta por estado:
-```
+```json
 {
     {
     "id": 9,
@@ -165,7 +165,7 @@ Exemplo de resposta de consulta por estado:
 O estado pesquisado ainda não foi  cadastrado no banco de dados.
 
 Exemplo de resposta:
-```
+```json
 {
     "error": "O estado não está cadastrado!"
 }
@@ -175,7 +175,7 @@ Exemplo de resposta:
 A URL "http://localhost:8000/cidades/?state=" está incompleta, pois o valor do parâmetro "state" está faltando.
 
 Exemplo de resposta:
-```
+```json
 {
     "error": "Especifique um nome ou estado para realizar a busca!"
 }
@@ -198,7 +198,7 @@ http://localhost:8000/clientes/2
 Caso essa resposta aconteça sua consulta foi feita com sucesso.
 
 Exemplo de resposta de consulta por nome:
-```
+```json
 {
     "id": 2,
     "name": "flavia",
@@ -214,7 +214,7 @@ Exemplo de resposta de consulta por nome:
 O cliente ainda não foi  cadastrado no banco de dados.
 
 Exemplo de resposta:
-```
+```json
 {
     "error": "O cliente não está cadastrado!"
 }
@@ -226,7 +226,7 @@ Esse endpoint é responsável por realizar a alteração do nome do cliente, a e
 http://localhost:8000/clientes/2
 ```
 #### Parâmetros
-```
+```json
 {
 "name": "Luiza"
 }
