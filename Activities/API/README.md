@@ -261,7 +261,8 @@ ID inválido!
 ```
 
 ##### 500 Internal Server Error
- **Todas as rotas acima estão usando este código de status para falhas na conexão com o servidor ao tentar processar a solicitação (request) ou erros de sintaxe no código!**
+ **Todas as rotas acima estão usando este código de status para falhas na conexão com o servidor ou erros de sintaxe no código!**
+ 
 Exemplo de resposta:
 ```
 Internal Server Error
