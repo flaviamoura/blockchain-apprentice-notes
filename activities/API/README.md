@@ -4,17 +4,7 @@ Esta API REST é utilizada para consulta, cadastro, edição e deleção de clie
 ## Configurações iniciais:
 Antes de rodar o código é necessário importar os seguintes pacotes:
 ```
-npm init
-```
-```
-npm install express —save
-```
-
-```
-npm install sequelize --save
-```
-```
-npm install mysql2 —save
+npm install 
 ```
 
 ### Banco de dados:
