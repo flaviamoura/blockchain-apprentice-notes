@@ -14,7 +14,7 @@ async function create(req, res) {
     }
     // retorna erro se a cidade já estiver cadastrada
     const existingCity = await cidades.findOne({
-      where: { name },
+      where: { name, state },
     });
 
     if (existingCity) {
