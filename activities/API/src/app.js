@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(routes);
 
 database.authenticate()
-    .then(() => console.log('Conexão feita com o banco de dados!'))
+    .then(() => console.log('Connection made to the database!'))
     .catch((msgErro) => console.log(msgErro));
 
-app.listen(8000, () => console.log('API rodando na porta 8000!'));
+app.listen(8000, () => console.log('API running on port 8000!'));

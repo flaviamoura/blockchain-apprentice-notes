@@ -1,20 +1,20 @@
 const express = require('express');
 const routes = express.Router();
 
-const clientesController = require('../controllers/clientesController');
-const cidadesController = require('../controllers/cidadesController');
+const customersController = require('../controllers/customersController');
+const citiesController = require('../controllers/citiesController');
 
-routes.post('/clientes', clientesController.create);
+routes.post('/customers', customersController.create);
 
-routes.get('/clientes/:nameOrId', clientesController.getCliente);
+routes.get('/customers/:nameOrId', customersController.getCustomer);
 
-routes.delete('/clientes/:id', clientesController.deleteById);
+routes.delete('/customers/:id', customersController.deleteById);
 
-routes.put('/clientes/:id', clientesController.updateName);
+routes.put('/customers/:id', customersController.updateName);
 
-routes.post('/cidades', cidadesController.create);
+routes.post('/cities', citiesController.create);
 
-routes.get('/cidades', cidadesController.getCidade);
+routes.get('/cities', citiesController.getCities);
 
 
 module.exports = routes;

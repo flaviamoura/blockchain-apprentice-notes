@@ -1,7 +1,7 @@
 const database = require('../../config/database');
 const DataTypes = require('sequelize');
 
-const clientes = database.define('clientes', {
+const customers = database.define('customers', {
   name: DataTypes.STRING,
   gender: DataTypes.STRING,
   dateOfBirth: DataTypes.DATE,
@@ -9,6 +9,6 @@ const clientes = database.define('clientes', {
   city: DataTypes.STRING
 });
 
-clientes.sync({force: false}).then(() => {});
+customers.sync({force: false}).then(() => {});
 
-module.exports = clientes;
+module.exports = customers;
