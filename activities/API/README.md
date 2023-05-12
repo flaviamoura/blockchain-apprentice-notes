@@ -75,7 +75,7 @@ Example response:
 
 ```json
 {
-    "error": "Os parâmetros são inválidos ou não foram preenchidos corretamente!"
+    "error": "The parameters are invalid or have not been filled in correctly!"
 }
 ```
 
