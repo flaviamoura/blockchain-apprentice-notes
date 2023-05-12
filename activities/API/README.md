@@ -1,35 +1,34 @@
-# Projeto de APIs
-Esta API REST é utilizada para consulta, cadastro, edição e deleção de clientes e cidades, utilizando o banco de dados MySQL!
+# API Project
+This REST API is used for querying, creating, updating, and deleting clients and cities, utilizing the MySQL database!
 
-## Configurações iniciais:
-Antes de rodar o código é necessário importar os seguintes pacotes:
+## Initial Setup:
+Before running the code, you need to import the following packages:
 ```
 npm install 
 ```
 
-### Banco de dados:
-Crie um banco de dados em MySQL e altere o nome do BD e senha no arquivo [database]()!
+### Database:
+Create a MySQL database and update the database name and password in the file [database]()!
 ```js
 const database = new Sequelize('nomeDoBD', 'root', 'senha', {
     host: 'localhost',
     dialect: 'mysql'
 });
 ```
-
-Após a configuração do banco de dados no terminal navegue para a pasta src e digite o seguinte comando no terminal:
+After configuring the database, navigate to the src folder in the terminal and enter the following command:
 ```
 node app
 ```
-Agora a API já deve estar rodando, utilize o Postman para executar os endpoints a seguir! 😄🎉 
-Certifique-se de selecionar o raw no Body do Postman e trocar para o formato JSON!
+Now the API should be up and running. Use Postman to execute the following endpoints! 😄🎉
+Make sure to select "raw" in the Body section of Postman and switch to JSON format!
 
 ## Endpoints
-### POST /clientes
-Esse endpoint é responsável por realizar o cadastro dos clientes no banco de dados.
+### POST /customers
+This endpoint is responsible for registering clients in the database.
 ```
-http://localhost:8000/clientes
+http://localhost:8000/customers
 ```
-#### Parâmetros
+#### Parameters:
 ```json
 {
 "name": "Flavia",
@@ -39,11 +38,11 @@ http://localhost:8000/clientes
 "city": "São Francisco de Assis"
 }
 ```
-#### Respostas
+#### Responses:
 ##### 201 Created
-Caso essa resposta aconteça o cadastro foi criado com sucesso.
+If this response occurs, the registration was successfully created.
 
-Exemplo de resposta:
+Example response:
 ```json
 {
     "newClient": {
@@ -60,41 +59,43 @@ Exemplo de resposta:
 
 ```
 ##### 409 Conflict
-Caso essa resposta aconteça, isso significa que o cliente já está cadastrado.
+If this response occurs, it means that the client is already registered.
 
-Exemplo de resposta:
+Example response:
 ```json
 {
-    "error": "O cliente já está cadastrado! "
+    "error": "The client is already registered!"
 }
 ```
 
 ##### 400 Bad Request
-Caso essa resposta aconteça foram enviados parâmetros inválidos(ex: name: "22") ou vazios no corpo da solicitação.
-Exemplo de resposta:
+If this response occurs, it means that invalid parameters or empty values were sent in the request body.
+
+Example response:
+
 ```json
 {
     "error": "Os parâmetros são inválidos ou não foram preenchidos corretamente!"
 }
 ```
 
-### POST /cidades
-Esse endpoint é responsável por realizar o cadastro das cidades no banco de dados.
+### POST /cities
+This endpoint is responsible for registering cities in the database.
 ```
-http://localhost:8000/cidades
+http://localhost:8000/cities
 ```
-#### Parâmetros
+#### Parameters:
 ```json
 {
 "name": "Santiago",
 "state": "RS"
 }
 ```
-#### Respostas
+#### Responses:
 ##### 201 Created
-Caso essa resposta aconteça o cadastro foi criado com sucesso.
+If this response occurs, the registration was successfully created.
 
-Exemplo de resposta:
+Example response:
 ```json
 {
     "newCity": {
@@ -108,38 +109,39 @@ Exemplo de resposta:
 
 ```
 ##### 409 Conflict
-Caso essa resposta aconteça, isso significa que a cidade já está cadastrada.
+If this response occurs, it means that the city is already registered.
 
-Exemplo de resposta:
+Example response:
 ```json
 {
-    "error": "A cidade já está cadastrada! "
+    "error": "The city is already registered!"
 }
 ```
 
 ##### 400 Bad Request
-Foram enviados parâmetros inválidos(ex: name: "22") ou vazios no corpo da solicitação.
-Exemplo de resposta:
+If this response occurs, it means that invalid or empty parameters were sent in the request body.
+
+Example response:
 ```json
 {
-    "error": "Os parâmetros são inválidos ou não foram preenchidos corretamente!"
+    "error": "Invalid or empty parameters!"
 }
 ```
 
-### GET /cidades
-Esse endpoint é responsável por realizar a consulta da cidade pelo nome ou estado.
+### GET /cities
+This endpoint is responsible for querying the city by name or state.
 ```
-http://localhost:8000/cidades/?name=São Paulo
+http://localhost:8000/cities/?name=São Paulo
 ```
 ```
-http://localhost:8000/cidades/?state=RS
+http://localhost:8000/cities/?state=RS
 ```
 
-#### Respostas
+#### Responses:
 ##### OK! 200
-Caso essa resposta aconteça sua consulta foi feita com sucesso.
+If this response occurs, it means that your query was successful.
 
-Exemplo de resposta de consulta por estado:
+Example response for querying by state:
 ```json
 {
     {
@@ -152,42 +154,42 @@ Exemplo de resposta de consulta por estado:
 }
 ```
 ##### 404 Not Found
-O estado pesquisado ainda não foi  cadastrado no banco de dados.
+The searched state has not been registered in the database yet.
 
-Exemplo de resposta:
+Example response:
 ```json
 {
-    "error": "O estado não está cadastrado!"
+    "error": "The state is not registered!"
 }
 ```
 
 ##### 400 Bad Request
-A URL "http://localhost:8000/cidades/?state=" está incompleta, pois o valor do parâmetro "state" está faltando.
+The URL "http://localhost:8000/cidades/?state=" is incomplete because the value of the "state" parameter is missing.
 
-Exemplo de resposta:
+Example response:
 ```json
 {
-    "error": "Especifique um nome ou estado para realizar a busca!"
+    "error": "Specify a name or state to perform the search!"
 }
 ```
 
-### GET /clientes
-Esse endpoint é responsável por realizar a consulta do cliente pelo nome ou ID.
+### GET /customers
+This endpoint is responsible for querying the client by name or ID.
 
-Exemplo de busca por Nome:
+Example request for searching by name:
 ```
-http://localhost:8000/clientes/flavia
+http://localhost:8000/customers/flavia
 ```
-Exemplo de busca por ID:
+Example request for searching by ID:
 ```
-http://localhost:8000/clientes/2
+http://localhost:8000/customers/2
 ```
 
-#### Respostas
+#### Responses
 ##### OK! 200
-Caso essa resposta aconteça sua consulta foi feita com sucesso.
+If this response occurs, it means that your query was successful.
 
-Exemplo de resposta de consulta por nome:
+Example response for querying by name:
 ```json
 {
     "id": 2,
@@ -201,59 +203,59 @@ Exemplo de resposta de consulta por nome:
 }
 ```
 ##### 404 Not Found
-O cliente ainda não foi  cadastrado no banco de dados.
+The client has not been registered in the database yet.
 
-Exemplo de resposta:
+Example response:
 ```json
 {
-    "error": "O cliente não está cadastrado!"
+    "error": "The client is not registered!"
 }
 ```
 
-### PUT /clientes
-Esse endpoint é responsável por realizar a alteração do nome do cliente, a escolha do cliente é feita por ID:
+### PUT /customers
+This endpoint is responsible for changing the name of the client. The client is selected based on their ID:
 ```
-http://localhost:8000/clientes/2
+http://localhost:8000/customers/2
 ```
-#### Parâmetros
+#### Parameters
 ```json
 {
 "name": "Luiza"
 }
 ```
-#### Respostas
+#### Responses
 ##### OK! 200
 ```
-Nome do cliente atualizado com sucesso!
+Client's name updated successfully!
 ```
 ##### 404 Not Found
-Caso essa resposta aconteça, o cliente em que você procura não está cadastrado no banco de dados.
+If this response occurs, the client you are looking for is not registered in the database.
 ```
-Cliente não encontrado!
+Client not found!
 ```
 
-### DELETE /clientes
-Esse endpoint é responsável por realizar a deleção de clientes por ID:
+### DELETE /customers
+This endpoint is responsible for deleting clients by ID:
 ```
 http://localhost:8000/clientes/2
 ```
-#### Respostas
+#### Responses
 ##### 204 No Content
-o código de status 204 indica que o cliente foi excluído com sucesso, mas que não há conteúdo a ser retornado na resposta.
+The status code 204 indicates that the client was successfully deleted but there is no content to be returned in the response.
 ##### 404 Not Found
 ```
-O ID não está cadastrado!
+The ID is not registered!
 ```
 ##### 400 Bad Request
-Caso essa resposta aconteça, foi enviado algum caractere não numérico. 
+If this response occurs, a non-numeric character was sent in the request.
 ```
 ID inválido!
 ```
 
 ##### 500 Internal Server Error
- **Todas as rotas acima estão usando este código de status para falhas na conexão com o servidor ou erros de sintaxe no código!**
+ **All the above routes are using this status code for server connection failures or syntax errors in the code!**
  
-Exemplo de resposta:
+Example response:
 ```
 Internal Server Error
 ```
