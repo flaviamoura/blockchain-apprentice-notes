@@ -1,29 +1,24 @@
 const cities = require("../models/cities");
+const { Op } = require('sequelize');
 
 async function create(req, res) {
   try {
     const { name, state } = req.body;
     // Checks if the request body is empty and if numeric values were sent
-    if (!isNaN(name) || !isNaN(state)) {
-      return res
-        .status(400)
-        .json({
-          error:
-            "Parameters are invalid or not filled in correctly!",
-        });
+    if (!name || !state) {
+      return res.status(400).json({
+        error: "Parameters 'name' and 'state' must be provided!",
+      });
     }
+
     // returns error if the city is already registered
-    const existingCity = await cities.findOne({
-      where: { name, state },
-    });
+    const existingCity = await cities.findOne({ where: { name, state } });
 
     if (existingCity) {
       return res.status(409).json({ error: "The city is already registered! " });
     }
-    const newCity = await cities.create({
-      name: name,
-      state: state,
-    });
+
+    const newCity = await cities.create({ name, state });
 
     res.status(201).json({ newCity });
   } catch (error) {
@@ -34,28 +29,25 @@ async function create(req, res) {
 
 async function getCities(req, res) {
   try {
-    const { name, state } = req.query;
+    const { nameOrState } = req.params;
 
-    let city;
-
-    if (name) {
-      city = await cities.findOne({
-        where: { name: name },
-      });
-      if (!city) {
-        return res.status(404).json({ error: "The city is not registered!" });
-      }
-    } else if (state) {
-      city = await cities.findOne({
-        where: { state: state },
-      });
-      if (!city) {
-        return res.status(404).json({ error: "The state is not registered!" });
-      }
-    } else {
+    if (!nameOrState) {
       return res.status(400).json({
         error: "Specify a name or state to perform the search!",
       });
+    }
+
+    const city = await cities.findOne({
+      where: {
+        [Op.or]: [
+          { name: nameOrState },
+          { state: nameOrState },
+        ],
+      },
+    });
+
+    if (!city) {
+      return res.status(404).json({ error: "The city or state is not registered!" });
     }
 
     res.json(city);
