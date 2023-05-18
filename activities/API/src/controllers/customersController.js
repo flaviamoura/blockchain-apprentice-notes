@@ -1,28 +1,37 @@
 const customers = require("../models/customers");
 
+function calculateAge(dateOfBirth) {
+  const today = new Date();
+  const birthDate = new Date(dateOfBirth);
+  let age = today.getFullYear() - birthDate.getFullYear();
+
+  birthDate.setFullYear(today.getFullYear());
+
+  if (birthDate > today) {
+    age--;
+  }
+
+  return age;
+}
+
+// Create a new customer
 async function create(req, res) {
   try {
-    const { name, gender, dateOfBirth, age, city } = req.body;
+    const { name, gender, dateOfBirth, city } = req.body;
 
     // Checks if the request body is empty and if numeric values were sent
-    if (
-      !isNaN(name) || !isNaN(gender) || !dateOfBirth || !isNaN(city) || !age
-    ) {
-      return res
-        .status(400)
-        .json({
-          error:
-            "Parameters are invalid or not filled in correctly!",
-        });
+    if (!isNaN(name) || !isNaN(gender) || !dateOfBirth || !isNaN(city)){
+      return res.status(400).json({ error: "Parameters are invalid or not filled in correctly!"});
     }
-    // returns error if the customer is already registered
-    const existingCustomer = await customers.findOne({
-      where: { name },
-    });
 
+    // returns error if the customer is already registered
+    const existingCustomer = await customers.findOne({ where: { name },});
+    
     if (existingCustomer) {
       return res.status(409).json({ error: "The customer is already registered! " });
     }
+
+    const age = calculateAge(dateOfBirth);
 
     const newClient = await customers.create({
       name: name,
