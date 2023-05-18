@@ -57,4 +57,14 @@ async function getCities(req, res) {
   }
 }
 
-module.exports = { create, getCities };
+async function getAllCities(_, res) {
+  try {
+    const allCities = await cities.findAll();
+    res.json(allCities);
+  } catch (error) {
+    console.log(error);
+    res.sendStatus(500);
+  }
+}
+
+module.exports = { create, getCities, getAllCities };
