@@ -14,7 +14,7 @@ routes.put('/customers/:id', customersController.updateName);
 
 routes.post('/cities', citiesController.create);
 
-routes.get('/cities', citiesController.getCities);
+routes.get('/cities/:nameOrState', citiesController.getCities);
 
 
 module.exports = routes;
