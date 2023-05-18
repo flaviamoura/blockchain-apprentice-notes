@@ -16,4 +16,6 @@ routes.post('/cities', citiesController.create);
 
 routes.get('/cities/:nameOrState', citiesController.getCities);
 
+routes.get('/cities', citiesController.getAllCities);
+
 module.exports = routes;
