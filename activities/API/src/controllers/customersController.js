@@ -34,11 +34,11 @@ async function create(req, res) {
     const age = calculateAge(dateOfBirth);
 
     const newClient = await customers.create({
-      name: name,
-      gender: gender,
-      dateOfBirth: dateOfBirth,
-      age: age,
-      city: city,
+      name,
+      gender,
+      dateOfBirth,
+      age,
+      city,
     });
 
     res.status(201).json({ newClient });
@@ -70,7 +70,6 @@ async function getCustomer(req, res) {
     }
   } else {
     // If it's a number, search for ID
-
     try {
       const customer = await customers.findByPk(nameOrId);
 
@@ -85,8 +84,8 @@ async function getCustomer(req, res) {
     }
   }
 }
-// query customer by id and validation if it's a number or not
 
+// query customer by id and validation if it's a number or not
 async function deleteById(req, res) {
   const id = req.params.id;
 
@@ -109,6 +108,7 @@ async function deleteById(req, res) {
   }
 }
 
+// Update customer name by ID
 async function updateName(req, res) {
   const id = req.params.id;
   const { name } = req.body;
