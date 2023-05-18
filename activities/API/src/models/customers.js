@@ -1,7 +1,7 @@
-const database = require('../../config/database');
-const DataTypes = require('sequelize');
+const database = require("../../config/database");
+const DataTypes = require("sequelize");
 
-const customers = database.define('customers', {
+const customers = database.define("customers", {
   name: DataTypes.STRING,
   gender: DataTypes.STRING,
   dateOfBirth: DataTypes.DATEONLY,

@@ -1,5 +1,5 @@
 const cities = require("../models/cities");
-const { Op } = require('sequelize');
+const { Op } = require("sequelize");
 
 async function create(req, res) {
   try {
