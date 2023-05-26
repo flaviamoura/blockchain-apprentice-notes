@@ -1,11 +1,12 @@
 # API Project
-This REST API is used for querying, creating, updating, and deleting clients and cities, utilizing the MySQL database!
+This REST API is used for querying, creating, updating, and deleting customers and cities, utilizing the MySQL database!
 
 ## Initial Setup:
 Before running the code, you need to import the following packages:
 ```
 npm install 
 ```
+
 
 ### Database:
 Create a MySQL database and update the database name and password in the file [database]()!
@@ -24,7 +25,7 @@ Make sure to select "raw" in the Body section of Postman and switch to JSON form
 
 ## Endpoints
 ### POST /customers
-This endpoint is responsible for registering clients in the database.
+This endpoint is responsible for registering customers in the database.
 ```
 http://localhost:8000/customers
 ```
@@ -34,7 +35,6 @@ http://localhost:8000/customers
 "name": "Flavia",
 "gender": "feminino",
 "dateOfBirth": "1999-08-08",
-"age": 23,
 "city": "São Francisco de Assis"
 }
 ```
@@ -59,12 +59,12 @@ Example response:
 
 ```
 ##### 409 Conflict
-If this response occurs, it means that the client is already registered.
+If this response occurs, it means that the customer is already registered.
 
 Example response:
 ```json
 {
-    "error": "The client is already registered!"
+    "error": "The customer is already registered!"
 }
 ```
 
@@ -75,101 +75,7 @@ Example response:
 
 ```json
 {
-    "error": "The parameters are invalid or have not been filled in correctly!"
-}
-```
-
-### POST /cities
-This endpoint is responsible for registering cities in the database.
-```
-http://localhost:8000/cities
-```
-#### Parameters:
-```json
-{
-"name": "Santiago",
-"state": "RS"
-}
-```
-#### Responses:
-##### 201 Created
-If this response occurs, the registration was successfully created.
-
-Example response:
-```json
-{
-    "newCity": {
-        "id": 9,
-        "name": "Santiago",
-        "state": "RS",
-        "updatedAt": "2023-04-02T17:55:00.855Z",
-        "createdAt": "2023-04-02T17:55:00.855Z"
-    }
-}
-
-```
-##### 409 Conflict
-If this response occurs, it means that the city is already registered.
-
-Example response:
-```json
-{
-    "error": "The city is already registered!"
-}
-```
-
-##### 400 Bad Request
-If this response occurs, it means that invalid or empty parameters were sent in the request body.
-
-Example response:
-```json
-{
-    "error": "Invalid or empty parameters!"
-}
-```
-
-### GET /cities
-This endpoint is responsible for querying the city by name or state.
-```
-http://localhost:8000/cities/?name=São Paulo
-```
-```
-http://localhost:8000/cities/?state=RS
-```
-
-#### Responses:
-##### OK! 200
-If this response occurs, it means that your query was successful.
-
-Example response for querying by state:
-```json
-{
-    {
-    "id": 9,
-    "name": "Santiago",
-    "state": "RS",
-    "createdAt": "2023-04-02T17:55:00.000Z",
-    "updatedAt": "2023-04-02T17:55:00.000Z"
-    }
-}
-```
-##### 404 Not Found
-The searched state has not been registered in the database yet.
-
-Example response:
-```json
-{
-    "error": "The state is not registered!"
-}
-```
-
-##### 400 Bad Request
-The URL "http://localhost:8000/cidades/?state=" is incomplete because the value of the "state" parameter is missing.
-
-Example response:
-```json
-{
-    "error": "Specify a name or state to perform the search!"
+    "error": "Parameters are invalid or have not been filled in correctly!"
 }
 ```
 
@@ -226,7 +132,7 @@ http://localhost:8000/customers/2
 #### Responses
 ##### OK! 200
 ```
-Client's name updated successfully!
+Customer name successfully updated!
 ```
 ##### 404 Not Found
 If this response occurs, the client you are looking for is not registered in the database.
@@ -235,9 +141,9 @@ Client not found!
 ```
 
 ### DELETE /customers
-This endpoint is responsible for deleting clients by ID:
+This endpoint is responsible for deleting customers by ID:
 ```
-http://localhost:8000/clientes/2
+http://localhost:8000/customers/2
 ```
 #### Responses
 ##### 204 No Content
@@ -249,7 +155,95 @@ The ID is not registered!
 ##### 400 Bad Request
 If this response occurs, a non-numeric character was sent in the request.
 ```
-ID inválido!
+Invalid ID!
+```
+
+### POST /cities
+This endpoint is responsible for registering cities in the database.
+```
+http://localhost:8000/cities
+```
+#### Parameters:
+```json
+{
+"name": "Santiago",
+"state": "RS"
+}
+```
+#### Responses:
+##### 201 Created
+If this response occurs, the registration was successfully created.
+
+Example response:
+```json
+{
+    "newCity": {
+        "id": 9,
+        "name": "Santiago",
+        "state": "RS",
+        "updatedAt": "2023-04-02T17:55:00.855Z",
+        "createdAt": "2023-04-02T17:55:00.855Z"
+    }
+}
+
+```
+##### 409 Conflict
+If this response occurs, it means that the city is already registered.
+
+Example response:
+```json
+{
+    "error": "The city is already registered!"
+}
+```
+
+##### 400 Bad Request
+If this response occurs, it means that invalid or empty parameters were sent in the request body.
+
+Example response:
+```json
+{
+    "error": "Parameters 'name' and 'state' must be provided!"
+}
+```
+
+### GET /cities
+To list all cities:
+```
+http://localhost:8000/cities
+```
+
+For querying the city by name or state.
+```
+http://localhost:8000/cities/santiago
+```
+```
+http://localhost:8000/cities/RS
+```
+
+#### Responses:
+##### OK! 200
+
+Example response for querying by state:
+```json
+{
+    {
+    "id": 9,
+    "name": "Santiago",
+    "state": "RS",
+    "createdAt": "2023-04-02T17:55:00.000Z",
+    "updatedAt": "2023-04-02T17:55:00.000Z"
+    }
+}
+```
+##### 404 Not Found
+The searched state has not been registered in the database yet.
+
+Example response:
+```json
+{
+    "error": "The city or state is not registered!"
+}
 ```
 
 ##### 500 Internal Server Error
